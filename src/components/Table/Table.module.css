@@ -1,0 +1,44 @@
+.table {
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  font-size: 16px;
+}
+
+.fixture__table tbody:nth-child(-n + 5) {
+  background-color: lightgreen;
+}
+.fixture__table tbody:nth-child(-n + 8) {
+  background-color: rgb(177, 208, 248);
+}
+.fixture__table tbody:nth-child(-n + 7) {
+  background-color: rgb(247, 247, 194);
+}
+.fixture__table tbody:nth-child(-n + 5) {
+  background-color: lightgreen;
+}
+.fixture__table tbody:nth-child(n + 19) {
+  background-color: rgb(238, 174, 174);
+}
+.table th,
+td {
+  padding-block: 10px;
+}
+.table thead {
+  font-size: 14px;
+  font-weight: 100;
+  background-color: #444;
+  color: white;
+}
+
+.table thead tr th:last-child {
+  width: 150px;
+}
+
+@media screen and (min-width: 992px) {
+  .table {
+    box-shadow: 5px 3px 14px -1px rgba(0, 0, 0, 0.18);
+  }
+}

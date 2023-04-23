@@ -1,0 +1,216 @@
+.main .user-view {
+  background-color: #fff;
+  max-width: 120rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07);
+  display: flex;
+  position: relative;
+}
+
+main.main .user-view .nav-arrow i {
+  font-size: 25px;
+}
+
+main.main .user-view .nav-arrow {
+  font-size: 25px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+  display: none;
+}
+
+.user-view__menu {
+  -webkit-box-flex: 32rem;
+  -ms-flex: 32rem 0 0px;
+  flex: 32rem 0 0;
+  background: #444;
+  padding: 4rem 0;
+}
+
+.user-view__content {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 7rem 0;
+  position: relative;
+}
+
+.user-view__form-container {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 8rem;
+}
+
+.heading-secondary {
+  font-size: 2.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: #444;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  display: inline-block;
+}
+
+.line {
+  margin: 6rem 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+.btn {
+  font-size: 1.6rem;
+  padding: 1.4rem 3rem;
+  border-radius: 10rem;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-weight: 400;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.right {
+  text-align: right !important;
+}
+
+.fixtures--msg {
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.ma-bt-md {
+  margin-bottom: 3rem !important;
+}
+
+.form__input {
+  display: block;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  padding: 1.25rem 1.75rem;
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  background-color: #f2f2f2;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.form__input:focus {
+  outline: none;
+  border-bottom: 3px solid #55c57a;
+}
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+.form__input::-webkit-input-placeholder {
+  color: #bbb;
+}
+.form__group:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+.form__label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.form__photo-upload {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 1.6rem;
+}
+.form__user-photo {
+  height: 15rem;
+  width: 15rem;
+  border-radius: 0 25% 25% 25%;
+  margin-right: 2rem;
+  background-color: #f2f2f2;
+  object-fit: cover;
+}
+.form__upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.form__upload:focus + label {
+  outline: 3px solid #444;
+  outline-offset: 3px;
+}
+.form__upload + label {
+  color: #444;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #444;
+  padding: 3px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.form__upload + label:hover {
+  -webkit-transform: translateY(-2px);
+  transform: translateY(-2px);
+}
+
+.form__group:has(span) {
+  font-size: 15px;
+  text-align: center;
+}
+
+.form__group:has(span) span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.fixture__heading {
+  padding: 10px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid currentColor;
+  color: #444;
+}
+
+.fixture__heading strong {
+  text-transform: uppercase;
+}
+
+.user-view__content .user-view__form-container .fixtures-container {
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 55px;
+}
+
+@media screen and (max-width: 600px) {
+  .user-view__content .user-view__form-container {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  main.main .user-view .nav-arrow {
+    display: block;
+  }
+}

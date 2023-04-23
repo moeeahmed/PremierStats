@@ -1,0 +1,42 @@
+main.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "right-side table ";
+  grid-column-gap: 25px;
+}
+
+main.container .table {
+  grid-area: table;
+}
+
+main.container .right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-area: right-side;
+}
+
+.container {
+  max-height: 100%;
+  width: 100%;
+  text-align: center;
+  border-spacing: 0;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 991px) {
+  main.container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  main.container .right-side.collapsed {
+    position: absolute;
+    z-index: 1;
+  }
+
+  main.container .right-side.hide {
+    display: none;
+  }
+}

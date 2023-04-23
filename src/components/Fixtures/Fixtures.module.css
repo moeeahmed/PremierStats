@@ -1,0 +1,48 @@
+.fixtures {
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: 5px 3px 14px -1px rgba(0, 0, 0, 0.18);
+  background-color: white;
+}
+
+.fixtures .fixtures--msg {
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+}
+
+.fixtures .vert-c {
+  justify-content: center;
+  display: flex;
+}
+
+.fixtures .flex-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  padding: 10px 30px;
+  font-size: 15px;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.fixtures .flex-bar .score {
+  background: gainsboro;
+  padding: 5px;
+}
+
+.fixtures .flex-bar .team {
+  width: 40%;
+}
+
+.fixtures .flex-bar .team:nth-of-type(1) {
+  text-align: right;
+}
+
+.fixtures .flex-bar .team:nth-of-type(2) {
+  text-align: left;
+}

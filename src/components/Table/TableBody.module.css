@@ -1,0 +1,16 @@
+.team-form {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.form-indicator {
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
+  color: white;
+  margin-inline: 2px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}

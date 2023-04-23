@@ -1,0 +1,59 @@
+.dropdown-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-filter .filter-icon {
+  transform: translate(13vw, -1px);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 185px;
+  left: -50px;
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content .filterOptions .filterName {
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  color: white;
+  background-color: #444;
+}
+
+.dropdown-content .filterOptions .filterList {
+  max-height: 30rem;
+  overflow-y: scroll;
+}
+
+.dropdown-content .filterOptions {
+  position: relative;
+  padding: 0px;
+  top: 17px;
+  box-shadow: 0 1px 2px #aaa;
+  border-radius: 3px;
+}
+
+.dropdown-content .filterOptions li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  position: relative;
+  padding: 7px 15px 7px 10px;
+  line-height: 21px;
+  font-size: 14px;
+  color: #444;
+  background-color: white;
+  border-bottom: 1px solid #e6ebed;
+}
+
+.dropdown-content .filterOption label {
+  padding: 10px;
+}
