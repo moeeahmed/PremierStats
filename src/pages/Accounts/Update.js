@@ -5,21 +5,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 import ScoreCards from "../../components/ScoreCards/ScoreCards";
 import classes from "./Accounts.module.css";
-import { store } from "../../store/index";
-
-export const loader = async (url) => {
-  const { token } = store.getState().auth;
-  const response = await fetch(`http://localhost:9000/api/v1/fixture/${url}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  if (!response.ok) {
-  } else {
-    const resData = await response.json();
-    return resData;
-  }
-};
 
 export const UpdateStats = () => {
   const [disabled, setDisabled] = useState(false);

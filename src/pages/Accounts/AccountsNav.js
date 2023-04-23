@@ -13,7 +13,7 @@ const AccountsNav = ({ user, show }) => {
     >
       <ul className={classes["side-nav"]}>
         <li>
-          <Link to="settings">Settings</Link>
+          <Link to="details">Details</Link>
         </li>
         <li>
           <Link to="delete-account">Delete Account</Link>

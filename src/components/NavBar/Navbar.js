@@ -48,7 +48,7 @@ const NavBar = () => {
     <div>
       <li className={classes["nav__item"]}>
         <Link
-          to="account/settings"
+          to="account/details"
           className={classes["nav__el"]}
           onClick={navToggleHandler}
         >

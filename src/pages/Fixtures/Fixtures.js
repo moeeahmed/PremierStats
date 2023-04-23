@@ -6,15 +6,6 @@ import Statistics from "../../components/Statistics/Statistics";
 import classes from "./Fixtures.module.css";
 import Dropdown from "../../components/Dropdowns/Dropdown";
 
-export const loader = async () => {
-  const response = await fetch("http://localhost:9000/api/v1/fixture/fixtures");
-  if (!response.ok) {
-  } else {
-    const resData = await response.json();
-    return resData;
-  }
-};
-
 const Fixtures = () => {
   const rightSec = useRef(null);
   const { allFixtures, latestFixture, teams } = useLoaderData();

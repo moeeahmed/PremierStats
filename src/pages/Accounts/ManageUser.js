@@ -1,28 +1,7 @@
 import React from "react";
 
-import { store } from "../../store/index";
 import classes from "./ManageUser.module.css";
 import { useLoaderData } from "react-router-dom";
-
-export const loader = async () => {
-  const { token } = store.getState().auth;
-  const response = await fetch(
-    "http://localhost:9000/api/v1/user/getAllUsers",
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    console.log(response);
-  } else {
-    const resData = await response.json();
-
-    return resData.data;
-  }
-};
 
 const ManageUser = () => {
   const { users } = useLoaderData();
