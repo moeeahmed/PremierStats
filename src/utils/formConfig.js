@@ -87,3 +87,11 @@ export const loginForm = {
     ],
   },
 };
+
+// object representation of reset password form
+export const resetPassword = {
+  email: {
+    ...createFormFieldConfig("Email", "email", "email"),
+    validationRules: [requiredRule("email")],
+  },
+};

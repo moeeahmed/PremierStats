@@ -12,6 +12,7 @@
 .authForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .authForm > * {
@@ -41,6 +42,22 @@
 .container .err-msg {
   color: red;
   font-size: 16px;
+}
+
+.redirect,
+.forgot--password {
+  font-size: 14px;
+  text-align: center;
+}
+
+.forgot--password {
+  margin: 0;
+}
+
+.redirect a,
+.redirect a:visited,
+.forgot--password {
+  color: white;
 }
 
 button:disabled {

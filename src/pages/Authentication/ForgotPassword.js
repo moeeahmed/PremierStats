@@ -1,27 +1,17 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  Form,
-  redirect,
-  useNavigate,
-  useLocation,
-  Link,
-} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Form, redirect, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 import { fetchApi } from "../../utils/fetchApi";
 import useForm from "../../hooks/use-Form";
-import { loginForm, signupForm } from "../../utils/formConfig";
-import { loginSuccess } from "../../store/reducer";
+import { resetPassword } from "../../utils/formConfig";
 import classes from "./AuthForm.module.css";
 
-const AuthForm = ({ isSignup }) => {
-  const dispatch = useDispatch();
+const ForgotPassword = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const formConfig = isSignup ? signupForm : loginForm;
-  const { form, renderFormInputs, isFormValid } = useForm(formConfig);
+  const { form, renderFormInputs, isFormValid } = useForm(resetPassword);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -31,32 +21,23 @@ const AuthForm = ({ isSignup }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const body = {
-      email: form.email.value,
-      password: form.password.value,
-    };
-
-    if (isSignup) {
-      body.name = form.name.value;
-      body.passwordConfirm = form.confirmPassword.value;
-    }
+    const email = form.email.value;
 
     const response = await fetchApi({
-      url: `api/v1/user/${isSignup ? "signup" : "login"}`,
+      url: `api/v1/user/forgotPassword`,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ email }),
     });
 
     if (response.status !== "success") {
       toast.error(response.message);
     } else {
-      toast.success(`Welcome, ${response.data.user.name}`);
-      dispatch(loginSuccess(response));
+      toast.success(response.message);
       setTimeout(() => {
-        state ? navigate(state.pathname) : navigate("/");
+        navigate("/login");
       }, 2000);
     }
   };
@@ -79,24 +60,11 @@ const AuthForm = ({ isSignup }) => {
           }}
         />
         <Form onSubmit={onSubmitHandler} className={classes["authForm"]}>
-          <h1>{isSignup ? "Sign Up" : "Login"}</h1>
+          <h1>Reset Password</h1>
           {renderFormInputs()}
           <button type="submit" disabled={!isFormValid()}>
-            {isSignup ? "Sign Up" : "Login"}
+            Submit
           </button>
-          <p className={classes["redirect"]}>
-            {isSignup ? "Already" : " Don't"} have an account?
-            {isSignup ? (
-              <a href="/login"> Login</a>
-            ) : (
-              <a href="/signup"> Sign up</a>
-            )}
-          </p>
-          {!isSignup && (
-            <Link to="/forgot-password" className={classes["forgot--password"]}>
-              Forgot Password
-            </Link>
-          )}
         </Form>
       </div>
       <div className={classes["area"]}>
@@ -112,4 +80,4 @@ const AuthForm = ({ isSignup }) => {
   );
 };
 
-export default AuthForm;
+export default ForgotPassword;

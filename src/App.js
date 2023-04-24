@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AuthForm from "./pages/Authentication/AuthForm";
+import ForgotPassword from "./pages/Authentication/ForgotPassword";
 import Root from "./pages/Root/Root";
 import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
@@ -13,6 +14,7 @@ import DeleteAccount from "./pages/Accounts/DeleteAccount";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { UpdateScores, UpdateStats } from "./pages/Accounts/Update";
 import AccountDetails from "./pages/Accounts/AccountDetails";
+
 import { fetchApi } from "./utils/fetchApi";
 
 const router = createBrowserRouter([
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <AuthForm isSignup={true} />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
     errorElement: <Error />,
   },
   {
