@@ -5,8 +5,6 @@ import classes from "./Error.module.css";
 
 const Error = () => {
   const error = useRouteError();
-  console.log(error);
-
   return (
     <React.Fragment>
       <div className={classes["container"]}>

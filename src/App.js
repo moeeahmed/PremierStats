@@ -12,7 +12,7 @@ import ManageUser from "./pages/Accounts/ManageUser";
 import DeleteAccount from "./pages/Accounts/DeleteAccount";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import { UpdateScores, UpdateStats } from "./pages/Accounts/Update";
-import AccountSettings from "./pages/Accounts/AccountSettings";
+import AccountDetails from "./pages/Accounts/AccountDetails";
 import { fetchApi } from "./utils/fetchApi";
 
 const router = createBrowserRouter([
@@ -34,21 +34,21 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Home />,
-        loader: () => fetchApi("api/v1/fixture/home"),
+        loader: () => fetchApi({ url: "api/v1/fixture/home" }),
       },
       {
         path: "fixtures",
         element: <Fixtures />,
-        loader: () => fetchApi("api/v1/fixture/fixtures"),
+        loader: () => fetchApi({ url: "api/v1/fixture/fixtures" }),
       },
       {
         path: "account",
         element: <Accounts />,
-        loader: () => fetchApi("api/v1/user/getUser", true),
+        loader: () => fetchApi({ url: "api/v1/user/getUser" }, true),
         children: [
           {
             path: "details",
-            element: <AccountSettings />,
+            element: <AccountDetails />,
           },
           {
             path: "delete-account",
@@ -56,23 +56,25 @@ const router = createBrowserRouter([
           },
           {
             element: <PrivateRoutes />,
-            loader: () => fetchApi("api/v1/user/getUser", true),
+            loader: () => fetchApi({ url: "api/v1/user/getUser" }, true),
             children: [
               {
                 path: "update-scores",
                 element: <UpdateScores />,
                 loader: () =>
-                  fetchApi("api/v1/fixture/getScoresToUpdate", true),
+                  fetchApi({ url: "api/v1/fixture/getScoresToUpdate" }, true),
               },
               {
                 path: "update-statistics",
                 element: <UpdateStats />,
-                loader: () => fetchApi("api/v1/fixture/getStatsToUpdate", true),
+                loader: () =>
+                  fetchApi({ url: "api/v1/fixture/getStatsToUpdate" }, true),
               },
               {
                 path: "manage-users",
                 element: <ManageUser />,
-                loader: () => fetchApi("api/v1/user/getAllUsers", true),
+                loader: () =>
+                  fetchApi({ url: "api/v1/user/getAllUsers" }, true),
               },
             ],
           },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 
+import { fetchApi } from "../../utils/fetchApi";
 import Results from "../../components/Results/Results";
 import Statistics from "../../components/Statistics/Statistics";
 import classes from "./Fixtures.module.css";
@@ -14,16 +15,10 @@ const Fixtures = () => {
   const [fixtureBarState, setFixtureBarState] = useState(false);
 
   const onFixtureSelected = async (event) => {
-    const getData = async (h, a) => {
-      const response = await fetch(
-        `http://localhost:9000/api/v1/fixture/getFixtures?HomeTeam=${h}&AwayTeam=${a}`
-      );
-      if (!response.ok) {
-      } else {
-        const resData = await response.json();
-        return resData;
-      }
-    };
+    const getData = async (h, a) =>
+      await fetchApi({
+        url: `api/v1/fixture/getFixtures?HomeTeam=${h}&AwayTeam=${a}`,
+      });
 
     const [HomeTeam, AwayTeam] = event.target
       .closest("div")

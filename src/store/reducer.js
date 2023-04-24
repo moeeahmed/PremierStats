@@ -23,8 +23,13 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       state.token = null;
     },
+    updateToken(state, action) {
+      const token = action.payload;
+      state.token = token;
+      cookies.set("jwt", token, { path: "/" });
+    },
   },
 });
 
-export const { loginSuccess, logoutSuccess } = authSlice.actions;
+export const { loginSuccess, logoutSuccess, updateToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;

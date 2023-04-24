@@ -12,7 +12,7 @@ const Logout = () => {
   useEffect(() => {
     const logout = async () => {
       dispatch(logoutSuccess());
-      navigate(state.pathname);
+      state ? navigate(state.pathname) : navigate("/");
     };
 
     logout();

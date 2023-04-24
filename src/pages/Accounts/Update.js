@@ -1,30 +1,30 @@
 import React, { useRef, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { fetchApi } from "../../utils/fetchApi";
 
 import ScoreCards from "../../components/ScoreCards/ScoreCards";
 import classes from "./Accounts.module.css";
 
 export const UpdateStats = () => {
   const [disabled, setDisabled] = useState(false);
-  const token = useSelector((state) => state.auth.token);
   const fixtures = useLoaderData();
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     setDisabled(true);
 
     const updateData = new Promise((resolve, reject) =>
-      fetch("http://localhost:9000/api/v1/fixture/updateStatistics", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      fetchApi(
+        {
+          url: "api/v1/fixture/updateStatistics",
+          method: "PATCH",
         },
-      })
-        .then((resp) => resp.json())
+        true
+      )
         .then((result) => resolve(result))
-        .catch((err) => reject(err))
+        .catch((err) => {
+          return reject(err);
+        })
     );
 
     toast.promise(updateData, {
@@ -80,8 +80,6 @@ export const UpdateStats = () => {
 };
 
 export const UpdateScores = () => {
-  const token = useSelector((state) => state.auth.token);
-
   const { fixtures } = useLoaderData();
 
   const scoreRefs = useRef(
@@ -93,7 +91,6 @@ export const UpdateScores = () => {
   );
 
   const onClickHandler = async () => {
-    console.log(scoreRefs.current);
     const data = scoreRefs.current
       .map((element) => {
         if (element.matchStatus.value) {
@@ -111,25 +108,22 @@ export const UpdateScores = () => {
       })
       .filter(Boolean);
 
-    console.log(fixtures);
-    console.log(data);
-
-    const resp = await fetch(
-      "http://localhost:9000/api/v1/fixture/updateFixture",
+    const response = await fetchApi(
       {
+        url: "api/v1/fixture/updateFixture",
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data),
-      }
+      },
+      true
     );
 
-    const res = await resp.json();
-
-    if (resp.ok) {
-      toast.success(res.message);
+    if (response.status === "error") {
+      toast.error(response.message);
+    } else {
+      toast.success(response.message);
       setTimeout(() => {
         window.location.reload();
       }, 2000);

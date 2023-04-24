@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, redirect, useNavigate, useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
+import { fetchApi } from "../../utils/fetchApi";
 import useForm from "../../hooks/use-Form";
 import { loginForm, signupForm } from "../../utils/formConfig";
 import { loginSuccess } from "../../store/reducer";
@@ -24,37 +25,33 @@ const AuthForm = ({ isSignup }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const dataBody = {
+    const body = {
       email: form.email.value,
       password: form.password.value,
     };
 
     if (isSignup) {
-      dataBody.name = form.name.value;
-      dataBody.passwordConfirm = form.confirmPassword.value;
+      body.name = form.name.value;
+      body.passwordConfirm = form.confirmPassword.value;
     }
 
-    const endpoint = isSignup
-      ? "http://localhost:9000/api/v1/user/signup"
-      : "http://localhost:9000/api/v1/user/login";
-
-    const response = await fetch(endpoint, {
+    const response = await fetchApi({
+      url: `api/v1/user/${isSignup ? "signup" : "login"}`,
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(dataBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
     });
 
-    const resp = await response.json();
-
-    const token = resp.token;
-
-    if (response.ok) {
-      const { name } = resp.data.user;
-      toast.success(`Welcome, ${name}`);
-      dispatch(loginSuccess({ token }));
-      state ? navigate(state.pathname) : navigate("/");
+    if (response.status !== "success") {
+      toast.error(response.message);
     } else {
-      toast.error(resp.message);
+      toast.success(`Welcome, ${response.data.user.name}`);
+      dispatch(loginSuccess(response));
+      setTimeout(() => {
+        state ? navigate(state.pathname) : navigate("/");
+      }, 2000);
     }
   };
 

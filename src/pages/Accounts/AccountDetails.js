@@ -1,14 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useOutletContext } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
+import { fetchApi } from "../../utils/fetchApi";
 import Button from "../../components/UI/Button";
 import classes from "./Accounts.module.css";
-import { store } from "../../store/index";
+import { updateToken } from "../../store/reducer";
 
-const AccountSettings = () => {
+const AccountDetails = () => {
+  const dispatch = useDispatch();
   const user = useOutletContext();
-  const { token } = store.getState().auth;
   const nameRef = useRef();
   const emailRef = useRef();
   const currentPasswordRef = useRef();
@@ -36,51 +38,39 @@ const AccountSettings = () => {
         window.location.reload();
       }
       url = "updateDetails";
-      body.name = name || user.user.name;
-      body.email = email || user.user.email;
+      body.name = name;
+      body.email = email;
     }
 
     if (event.target.id === "password") {
       url = "updatePassword";
       body.currentPassword = currentPassword;
       body.password = password;
-      body.confirmPassword = confirmPassword;
+      body.passwordConfirm = confirmPassword;
     }
 
-    const response = await fetch(`http://localhost:9000/api/v1/user/${url}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const response = await fetchApi(
+      {
+        url: `api/v1/user/${url}`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
       },
-      body: JSON.stringify(body),
-    });
+      true
+    );
 
-    const resp = await response.json();
-
-    if (!response.ok) {
-      toast.error(resp.message);
-      return;
+    if (response.status === "error") {
+      toast.error(response.message);
+    } else {
+      toast.success(response.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
 
-    let message;
-
-    message =
-      event.target.id === "details"
-        ? name && email
-          ? "Your name and email have been updated"
-          : name
-          ? "Your name has been updated"
-          : email
-          ? "Your email has been updated"
-          : ""
-        : "Your password has been updated";
-
-    toast.success(message);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    if (response.token) dispatch(updateToken(response.token));
   };
 
   return (
@@ -189,4 +179,4 @@ const AccountSettings = () => {
   );
 };
 
-export default AccountSettings;
+export default AccountDetails;
