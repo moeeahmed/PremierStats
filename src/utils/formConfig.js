@@ -52,11 +52,7 @@ export const signupForm = {
   },
   email: {
     ...createFormFieldConfig("Email", "email", "email"),
-    validationRules: [
-      requiredRule("email"),
-      minLengthRule("email", 10),
-      maxLengthRule("email", 25),
-    ],
+    validationRules: [requiredRule("email"), minLengthRule("email", 10)],
   },
   password: {
     ...createFormFieldConfig("Password", "password", "password"),
@@ -93,5 +89,25 @@ export const resetPassword = {
   email: {
     ...createFormFieldConfig("Email", "email", "email"),
     validationRules: [requiredRule("email")],
+  },
+};
+
+// object representation of set new password form
+export const setNewPassword = {
+  password: {
+    ...createFormFieldConfig("Password", "password", "password"),
+    validationRules: [
+      requiredRule("password"),
+      minLengthRule("password", 3),
+      maxLengthRule("password", 20),
+    ],
+  },
+  confirmPassword: {
+    ...createFormFieldConfig("Confirm Password", "confirmPassword", "password"),
+    validationRules: [
+      requiredRule("password"),
+      minLengthRule("password", 3),
+      maxLengthRule("password", 20),
+    ],
   },
 };

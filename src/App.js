@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AuthForm from "./pages/Authentication/AuthForm";
-import ForgotPassword from "./pages/Authentication/ForgotPassword";
+import { ForgotPassword, ResetPassword } from "./pages/Authentication/Password";
 import Root from "./pages/Root/Root";
 import Error from "./pages/Error/Error";
 import Home from "./pages/Home/Home";
@@ -31,6 +31,11 @@ const router = createBrowserRouter([
   {
     path: "/forgot-password",
     element: <ForgotPassword />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPassword />,
     errorElement: <Error />,
   },
   {
