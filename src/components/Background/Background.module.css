@@ -11,7 +11,7 @@
 
 .area {
   background: #444;
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+  background: -webkit-linear-gradient(270deg, #eff0fa, #9b9cb5);
   width: 100%;
   height: 100vh;
 }
