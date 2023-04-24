@@ -35,7 +35,7 @@ const AccountDetails = () => {
 
     if (event.target.id === "details") {
       if (!name && !email) {
-        window.location.reload();
+        return window.location.reload();
       }
       url = "updateDetails";
       body.name = name;

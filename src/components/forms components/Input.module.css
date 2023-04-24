@@ -12,7 +12,6 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-size: 14px;
   padding: 0 5px 0 5px;
-  font-weight: 900;
   color: rgba(51, 51, 85, 0.75);
 }
 
@@ -21,8 +20,8 @@
 }
 
 .inputContainer .error {
-  text-transform: capitalize;
   color: red;
+  font-size: 14px;
 }
 
 .inputContainer input.error {

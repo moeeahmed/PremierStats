@@ -1,18 +1,12 @@
 .container {
   width: 100vw;
   height: 100vh;
+  position: absolute;
   justify-content: center;
   display: flex;
   align-items: center;
-  position: absolute;
-  display: flex;
+  z-index: 1;
   flex-direction: column;
-}
-
-.container h1 {
-  text-align: center;
-  color: #fff;
-  font-size: 33px;
 }
 
 .area {

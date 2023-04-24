@@ -1,11 +1,15 @@
 import React from "react";
 
+import Spinner from "../Loading/Spinner";
 import classes from "./Button.module.css";
 
-const Button = ({ text }) => {
+const Button = ({ text, type, isLoading }) => {
   return (
-    <button className={`${classes["btn"]} ${classes["btn-grey"]}`}>
-      {text}
+    <button
+      type={type}
+      className={`${classes["btn"]} ${isLoading && classes["active"]}`}
+    >
+      {!isLoading ? text : <Spinner />}
     </button>
   );
 };

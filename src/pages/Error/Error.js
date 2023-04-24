@@ -1,32 +1,15 @@
 import { useRouteError } from "react-router-dom";
 import React from "react";
 
-import classes from "./Error.module.css";
+import Background from "../../components/Background/Background";
 
 const Error = () => {
   const error = useRouteError();
   return (
-    <React.Fragment>
-      <div className={classes["container"]}>
-        <h1>Something went wrong</h1>
-        {/* <h1>{error.data.split(":")[1]}</h1> */}
-      </div>
-
-      <div className={classes["area"]}>
-        <ul className={classes["circles"]}>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-    </React.Fragment>
+    <Background>
+      <h1>Something went wrong</h1>
+      {/* <h1>{error.data.split(":")[1]}</h1> */}
+    </Background>
   );
 };
 

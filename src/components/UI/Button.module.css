@@ -13,6 +13,8 @@
   backface-visibility: hidden;
   border: none;
   cursor: pointer;
+  background-color: #444;
+  color: #fff;
 }
 .btn:hover {
   -webkit-transform: translateY(-3px);
@@ -23,11 +25,8 @@
 .btn::after {
   background-color: #55c57a;
 }
-.btn:focus {
+
+.btn.active {
   outline: none;
   background-color: #2e864b;
-}
-.btn-grey {
-  background-color: #444;
-  color: #fff;
 }
