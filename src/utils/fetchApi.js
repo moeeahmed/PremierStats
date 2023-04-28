@@ -11,7 +11,7 @@ export const fetchApi = async (fetchOptions, auth = false) => {
     }
 
     const options = {
-      url: `https://easy-erin-nematode-hat.cyclic.app/${fetchOptions.url}`,
+      url: `http://3.8.180.45:9000/${fetchOptions.url}`,
       method: fetchOptions.method ? fetchOptions.method : "GET",
       headers: fetchOptions.headers ? fetchOptions.headers : {},
       data: fetchOptions.body ? fetchOptions.body : null,
